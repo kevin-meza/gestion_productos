@@ -17,21 +17,27 @@
 
         <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ms-auto">
+                @if(!Auth::user())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/login') }}">Ingresar</a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/') }}">Inicio</a>
                 </li>
+                @if(Auth::user())
+                    @if(Auth::user()->tipo_user == 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/personas') }}">Personas</a>
+                        </li>
+                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/productos') }}">Productos</a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/personas') }}">Personas</a>
-                </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/productos') }}">Productos</a>
-                </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/contacto') }}">Contacto</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/personas/create') }}">Registrar</a>
                 </li>
             </ul>
         </div>
