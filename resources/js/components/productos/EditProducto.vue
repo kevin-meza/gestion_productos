@@ -234,13 +234,6 @@ export default {
     },
     mounted() {
 
-        //     console.log('producto:', this.producto);
-        // console.log('categoria_id:', this.producto.categoria_id);
-        // console.log('categorias:', this.categorias);
-        //    const categoriaId = Number(this.producto.categoria_id);
-
-        //   this.producto.activo = Boolean(Number(this.producto.activo));
-        //     console.log('activo:', this.producto.activo);
     },
     computed: {
     activoChecked: {
@@ -282,7 +275,6 @@ export default {
             formData.append('activo', this.producto.activo ? 1 : 0);
 
             if (this.imagenes.length > 0) {
-                // formData.append('imagen', this.imagen)
                 this.imagenes.forEach(imagen => {
                     formData.append('imagenes[]', imagen)
                 })
@@ -338,8 +330,6 @@ export default {
             if (this.errors > 0){
                 return false;
             }
-            // this.producto.categoria_id = this.categoria_id;
-            // this.producto.marca_id = this.marca_id;
 
             return true;
         }
