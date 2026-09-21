@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Services;
+
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+class PokemonService
+{
+    public static function getPokemon(string $name): array
+    {
+        $response = Http::get(
+            "https://pokeapi.co/api/v2/pokemon/{$name}"
+        );
+
+        if (!$response->successful()) {
+            return [];
+        }
+
+        return $response->json();
+    }
+    public static function getType($url)
+    {
+        $response = Http::get(
+            $url
+        );
+
+        if (!$response->successful()) {
+            return [];
+        }
+        $tipo_es = collect($response)
+    ->firstWhere('language.name', 'es');
+        Log::info($response);
+
+        return $response->json();
+    }
+}

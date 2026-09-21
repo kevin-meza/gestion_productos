@@ -1,0 +1,6 @@
+
+/* Posicion alerta */
+#toast-container.toast-top-right {
+    top: 100px!important;
+    right: 30px!important;
+}
