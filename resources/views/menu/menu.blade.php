@@ -39,6 +39,41 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/contacto') }}">Contacto</a>
                 </li>
+                @if(Auth::user())
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+                        {{-- opciones perfil --}}
+                        <div class="container-fluid">
+
+
+                            <div class="ms-auto">
+                                <div class="dropdown">
+                                    <button
+                                    class="btn btn-secondary dropdown-toggle d-flex align-items-center gap-2"
+                                    type="button"
+                                    id="userDropdown"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <!-- Icono-->
+                                    <i class="bi bi-person-circle"></i>
+                                    <span>Mi Perfil</span>
+                                    </button>
+
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    {{-- <li><a class="dropdown-item" href="#perfil">Ver Perfil</a></li> --}}
+                                    {{-- <li><a class="dropdown-item" href="#configuracion">Configuración</a></li> --}}
+                                    {{-- <li><hr class="dropdown-divider"></li> --}}
+                                    <li>
+                                    <button class="dropdown-item text-danger fw-bold" id="logoutBtn" type="button" onclick="window.location.href='/logout'">
+                                            Cerrar sesión
+                                        </button>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                @endif
             </ul>
         </div>
     </div>

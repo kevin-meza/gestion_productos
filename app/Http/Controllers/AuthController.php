@@ -15,7 +15,7 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-            Log::info('llega al login');
+
         $validator = Validator::make($request->all(), [
             'email'    => 'required|email',
             'password' => 'required|string',
@@ -26,14 +26,14 @@ class AuthController extends Controller
                 'message' => 'Datos inválidos.',
                 'errors'  => $validator->errors(),
             ], 422);
+
         }
 
         $credentials = $request->only('email', 'password');
 
         if (!Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Credenciales incorrectas.',
-            ], 401);
+            $mensaje = "Credenciales incorrectas.";
+            return redirect()->back()->with('error', $mensaje);
         }
 
         /** @var User $user */

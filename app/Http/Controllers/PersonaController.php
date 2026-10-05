@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persona;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 class PersonaController extends Controller
 {
@@ -49,10 +51,34 @@ class PersonaController extends Controller
 
         // return redirect()->back()->with('success', 'Persona creada correctamente.');
     }
+    public function store2(Request $request)
+    {
+        Log::info('store');
+        Log::info($request);
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            // 'email' => 'required|email|unique:users,email',
+            // 'password' => 'required|string|min:6|confirmed',
+        ]);
+        $user = new User();
+        Log::info('User');
 
+        $user->name = $request->nombre.' '.$request->apellido;
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+
+        return redirect()->back()->with('success', 'Persona creada correctamente.');
+
+    }
     /**
      * Display the specified resource.
      */
+
     public function show(string $id)
     {
         //
